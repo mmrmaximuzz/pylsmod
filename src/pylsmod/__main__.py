@@ -2,17 +2,33 @@
 Main module to run pylsmod as a cli program
 """
 
+import argparse
+
 from . import dot, graph, parser
+
+
+def cli_parser() -> argparse.ArgumentParser:
+    """
+    Create a CLI argument parser for the program
+    """
+
+    argparser = argparse.ArgumentParser(
+        prog="pylsmod",
+        description="create a dot graph for your kernel modules")
+    argparser.add_argument("--input", default="/proc/modules",
+                           type=argparse.FileType(),
+                           help="the path to file with /proc/modules content")
+    return argparser
 
 
 def main() -> None:
     """
-    Entry point for the lsmod. By default, reads /proc/modules and creates a
+    Entry point for the pylsmod. By default, reads /proc/modules and creates a
     bunch of dotfiles in the current directory
     """
 
-    with open("/proc/modules") as modfile:
-        content = modfile.read()
+    args = cli_parser().parse_args()
+    content = args.input.read()
 
     modules = parser.parse_proc_modules(content)
     components = graph.make_components(modules)
