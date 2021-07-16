@@ -2,7 +2,7 @@
 Module for creating dot files for graphviz software
 """
 
-from .graph import Graph
+from .graphs import Graph
 
 
 def to_dotfile(graph: Graph) -> str:

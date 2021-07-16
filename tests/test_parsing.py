@@ -2,7 +2,7 @@
 Testing parsing utilities
 """
 
-from pylsmod import parser
+from pylsmod import parsing
 
 
 LSMOD_EMPTY = """\
@@ -15,7 +15,7 @@ def test_parse_lsmod_nomodules():
     Should return empty graph on empty input
     """
 
-    assert parser.parse_lsmod(LSMOD_EMPTY) == {}
+    assert parsing.parse_lsmod(LSMOD_EMPTY) == {}
 
 
 LSMOD_SAMPLE = """\
@@ -33,7 +33,7 @@ def test_parse_lsmod_sample():
     Should return valid directional graph
     """
 
-    assert parser.parse_lsmod(LSMOD_SAMPLE) == {
+    assert parsing.parse_lsmod(LSMOD_SAMPLE) == {
         "aaaaaa": {"cccccc", "bbbbbb"},
         "bbbbbb": {"cccccc"},
         "cccccc": set(),
@@ -47,7 +47,7 @@ def test_parse_proc_modules_nomodules():
     Should return empty graph on empty input
     """
 
-    assert parser.parse_proc_modules("") == {}
+    assert parsing.parse_proc_modules("") == {}
 
 
 PROC_MODULES_SAMPLE = """\
@@ -64,7 +64,7 @@ def test_parse_proc_modules_sample():
     Should return valid directed graph
     """
 
-    assert parser.parse_proc_modules(PROC_MODULES_SAMPLE) == {
+    assert parsing.parse_proc_modules(PROC_MODULES_SAMPLE) == {
         "aaaaaa": {"cccccc", "bbbbbb"},
         "bbbbbb": {"cccccc"},
         "cccccc": set(),
@@ -88,7 +88,7 @@ def test_parse_proc_modules_sample_trailing():
     be ignored
     """
 
-    assert parser.parse_proc_modules(PROC_MODULES_TRAILING) == {
+    assert parsing.parse_proc_modules(PROC_MODULES_TRAILING) == {
         "aaaaaa": {"cccccc", "bbbbbb"},
         "bbbbbb": {"cccccc"},
         "cccccc": set(),

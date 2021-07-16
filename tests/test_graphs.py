@@ -2,7 +2,7 @@
 Test graph operations for lsmod package
 """
 
-from pylsmod import graph
+from pylsmod import graphs
 
 
 def test_make_undirected_empty():
@@ -10,7 +10,7 @@ def test_make_undirected_empty():
     Empty graph must remain empty
     """
 
-    assert {} == graph.make_undirected({})
+    assert {} == graphs.make_undirected({})
 
 
 def test_make_undirected_must_copy():
@@ -19,7 +19,7 @@ def test_make_undirected_must_copy():
     """
 
     arg = {}
-    assert arg is not graph.make_undirected(arg)
+    assert arg is not graphs.make_undirected(arg)
 
 
 def test_make_undirected_isolated_node():
@@ -28,7 +28,7 @@ def test_make_undirected_isolated_node():
     """
 
     arg = {"A": set()}
-    assert arg == graph.make_undirected(arg)
+    assert arg == graphs.make_undirected(arg)
 
 
 def test_make_undirected_isolated_nodes():
@@ -37,7 +37,7 @@ def test_make_undirected_isolated_nodes():
     """
 
     arg = {"A": set(), "B": set()}
-    assert arg == graph.make_undirected(arg)
+    assert arg == graphs.make_undirected(arg)
 
 
 def test_make_undirected_onehop():
@@ -47,7 +47,7 @@ def test_make_undirected_onehop():
 
     arg = {"A": {"B"}, "B": set()}
     expected = {"A": {"B"}, "B": {"A"}}
-    assert expected == graph.make_undirected(arg)
+    assert expected == graphs.make_undirected(arg)
 
 
 def test_make_components_empty():
@@ -57,7 +57,7 @@ def test_make_components_empty():
 
     arg = {}
     expected = []
-    assert expected == graph.make_components(arg)
+    assert expected == graphs.make_components(arg)
 
 
 def test_make_components_one_component():
@@ -67,7 +67,7 @@ def test_make_components_one_component():
 
     arg = {"A": {"B"}, "X": {"A"}}
     expected = [{"A": {"B"}, "X": {"A"}, "B": set()}]
-    assert expected == graph.make_components(arg)
+    assert expected == graphs.make_components(arg)
 
 
 def test_make_components_multiple():
@@ -81,7 +81,7 @@ def test_make_components_multiple():
         {"A": {"B"}, "B": set()},
     ]
 
-    components = graph.make_components(arg)
+    components = graphs.make_components(arg)
 
     # no another way to compare two lists of dicts
     for comp in components:
@@ -96,7 +96,7 @@ def test_find_roots_empty():
     Must return empty root list
     """
 
-    assert graph.find_roots({}) == []
+    assert graphs.find_roots({}) == []
 
 
 def test_find_roots_single_edge():
@@ -105,7 +105,7 @@ def test_find_roots_single_edge():
     """
 
     arg = {"A": {"B"}, "B": set()}
-    assert graph.find_roots(arg) == ["B"]
+    assert graphs.find_roots(arg) == ["B"]
 
 
 def test_find_roots_no_roots():
@@ -114,4 +114,4 @@ def test_find_roots_no_roots():
     """
 
     arg = {"A": {"B"}, "B": {"C"}, "C": {"A"}}
-    assert graph.find_roots(arg) == []
+    assert graphs.find_roots(arg) == []

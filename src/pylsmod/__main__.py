@@ -4,7 +4,7 @@ Main module to run pylsmod as a cli program
 
 import argparse
 
-from . import dot, graph, parser
+from . import dot, graphs, parsing
 
 
 def cli_parser() -> argparse.ArgumentParser:
@@ -30,12 +30,12 @@ def main() -> None:
     args = cli_parser().parse_args()
     content = args.input.read()
 
-    modules = parser.parse_proc_modules(content)
-    components = graph.make_components(modules)
+    modules = parsing.parse_proc_modules(content)
+    components = graphs.make_components(modules)
 
     for component in components:
         dotdesc = dot.to_dotfile(component)
-        roots = sorted(graph.find_roots(component))
+        roots = sorted(graphs.find_roots(component))
         filename = "+".join(roots) + ".dot"
         with open(filename, "w") as dotfile:
             dotfile.write(dotdesc)

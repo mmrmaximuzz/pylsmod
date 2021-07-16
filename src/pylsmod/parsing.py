@@ -2,7 +2,7 @@
 Parsing kernel modules info from various formats
 """
 
-from .graph import Graph
+from .graphs import Graph
 
 
 def parse_lsmod(content: str) -> Graph:
