@@ -1,6 +1,4 @@
-"""
-Graph operations for lsmod package
-"""
+"""Graph operations for lsmod package."""
 
 from typing import Dict, List, Set
 
@@ -9,10 +7,7 @@ Graph = Dict[str, Set[str]]
 
 
 def make_undirected(dgraph: Graph) -> Graph:
-    """
-    Take directed graph and return its undirected copy
-    """
-
+    """Take directed graph and return its undirected copy."""
     ugraph: Graph = {}
     for node, neighs in dgraph.items():
         ugraph.setdefault(node, set())
@@ -25,10 +20,7 @@ def make_undirected(dgraph: Graph) -> Graph:
 
 
 def make_components(dgraph: Graph) -> List[Graph]:
-    """
-    Returns a components list from given directed graph
-    """
-
+    """Return a components list from given directed graph."""
     # make undirected copy first to traverse without pain
     ugraph = make_undirected(dgraph)
 
@@ -55,8 +47,5 @@ def make_components(dgraph: Graph) -> List[Graph]:
 
 
 def find_roots(dgraph: Graph) -> List[str]:
-    """
-    Returns a list of root nodes in the directed graph (if present)
-    """
-
+    """Return a list of root nodes in the directed graph (if present)."""
     return [node for node, neighs in dgraph.items() if not neighs]

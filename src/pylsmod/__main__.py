@@ -1,6 +1,4 @@
-"""
-Main module to run pylsmod as a cli program
-"""
+"""Main module to run pylsmod as a CLI program."""
 
 import argparse
 
@@ -8,10 +6,7 @@ from . import dot, graphs, parsing
 
 
 def cli_parser() -> argparse.ArgumentParser:
-    """
-    Create a CLI argument parser for the program
-    """
-
+    """Create a CLI argument parser for the program."""
     argparser = argparse.ArgumentParser(
         prog="pylsmod",
         description="create a dot graph for your kernel modules")
@@ -22,11 +17,11 @@ def cli_parser() -> argparse.ArgumentParser:
 
 
 def main() -> None:
-    """
-    Entry point for the pylsmod. By default, reads /proc/modules and creates a
-    bunch of dotfiles in the current directory
-    """
+    """Entry point for pylsmod.
 
+    By default, reads /proc/modules and creates a bunch of dotfiles in the
+    current directory
+    """
     args = cli_parser().parse_args()
     content = args.input.read()
 

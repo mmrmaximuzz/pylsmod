@@ -1,6 +1,4 @@
-"""
-Testing parsing utilities
-"""
+"""Testing parsing utilities."""
 
 from pylsmod import parsing
 
@@ -11,10 +9,7 @@ Module                  Size  Used by
 
 
 def test_parse_lsmod_nomodules():
-    """
-    Should return empty graph on empty input
-    """
-
+    """Should return empty graph on empty input."""
     assert parsing.parse_lsmod(LSMOD_EMPTY) == {}
 
 
@@ -29,10 +24,7 @@ eeeeee                  1500  0
 
 
 def test_parse_lsmod_sample():
-    """
-    Should return valid directional graph
-    """
-
+    """Should return valid directed graph."""
     assert parsing.parse_lsmod(LSMOD_SAMPLE) == {
         "aaaaaa": {"cccccc", "bbbbbb"},
         "bbbbbb": {"cccccc"},
@@ -43,10 +35,7 @@ def test_parse_lsmod_sample():
 
 
 def test_parse_proc_modules_nomodules():
-    """
-    Should return empty graph on empty input
-    """
-
+    """Should return empty graph on empty input."""
     assert parsing.parse_proc_modules("") == {}
 
 
@@ -60,10 +49,7 @@ eeeeee 1500 0 - Live 0x0000000000000000
 
 
 def test_parse_proc_modules_sample():
-    """
-    Should return valid directed graph
-    """
-
+    """Should return valid directed graph."""
     assert parsing.parse_proc_modules(PROC_MODULES_SAMPLE) == {
         "aaaaaa": {"cccccc", "bbbbbb"},
         "bbbbbb": {"cccccc"},
@@ -83,11 +69,7 @@ eeeeee 1500 0 - Live 0x0000000000000000
 
 
 def test_parse_proc_modules_sample_trailing():
-    """
-    /proc/modules could contain trailing flags in the end of the line, should
-    be ignored
-    """
-
+    """Should ignore /proc/modules trailing flags."""
     assert parsing.parse_proc_modules(PROC_MODULES_TRAILING) == {
         "aaaaaa": {"cccccc", "bbbbbb"},
         "bbbbbb": {"cccccc"},

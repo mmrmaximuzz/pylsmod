@@ -1,3 +1,1 @@
-"""
-Simple utility for investigating linux kernel modules structure
-"""
+"""Simple utility for investigating linux kernel modules structure."""

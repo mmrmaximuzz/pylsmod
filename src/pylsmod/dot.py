@@ -1,15 +1,10 @@
-"""
-Module for creating dot files for graphviz software
-"""
+"""Module for creating dot files for graphviz software."""
 
 from .graphs import Graph
 
 
 def to_dotfile(graph: Graph) -> str:
-    """
-    Transforms a directed graph to a dotfile
-    """
-
+    """Transform a directed graph to a dotfile."""
     lines = []
 
     # prepare nodes

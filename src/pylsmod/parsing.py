@@ -1,15 +1,10 @@
-"""
-Parsing kernel modules info from various formats
-"""
+"""Parsing kernel modules structure from various formats."""
 
 from .graphs import Graph
 
 
 def parse_lsmod(content: str) -> Graph:
-    """
-    Parse `lsmod` output and collect deps in the directed graph
-    """
-
+    """Parse `lsmod` output and collect deps in the directed graph."""
     # skip the first header line
     _, *mod_strings = content.splitlines()
 
@@ -30,10 +25,7 @@ def parse_lsmod(content: str) -> Graph:
 
 
 def parse_proc_modules(content: str) -> Graph:
-    """
-    Parse /proc/modules output without `lsmod` help
-    """
-
+    """Parse /proc/modules output without `lsmod` help."""
     graph: Graph = {}
     for line in content.splitlines():
         module, _, _, elems, *_ = line.split()
