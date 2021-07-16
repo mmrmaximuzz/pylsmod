@@ -6,7 +6,8 @@ from .graphs import Graph
 def parse_lsmod(content: str) -> Graph:
     """Parse `lsmod` output and collect deps in the directed graph."""
     # skip the first header line
-    _, *mod_strings = content.splitlines()
+    header, *mod_strings = content.splitlines()
+    assert header.split() == ["Module", "Size", "Used", "by"]
 
     graph: Graph = {}
     for mod_string in mod_strings:

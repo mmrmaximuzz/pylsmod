@@ -1,5 +1,7 @@
 """Testing parsing utilities."""
 
+import pytest
+
 from pylsmod import parsing
 
 
@@ -32,6 +34,12 @@ def test_parse_lsmod_sample():
         "dddddd": set(),
         "eeeeee": {"dddddd"},
     }
+
+
+def test_parse_lsmod_no_header():
+    """Should raise if `lsmod` header is not valid."""
+    with pytest.raises(AssertionError):
+        parsing.parse_lsmod("Not a valid header")
 
 
 def test_parse_proc_modules_nomodules():
