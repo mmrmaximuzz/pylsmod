@@ -80,6 +80,7 @@ written to the separate `.dot` file. Example of the files generated (Linux Mint,
 -rw-rw-r-- 1 user user   45 Jan 1 00:00 crct10dif_pclmul.dot
 -rw-rw-r-- 1 user user  205 Jan 1 00:00 cryptd+glue_helper.dot
 -rw-rw-r-- 1 user user  138 Jan 1 00:00 dm_log.dot
+-rw-rw-r-- 1 user user  321 Jan 1 00:00 ecc.dot
 . . .
 ```
 
@@ -87,18 +88,29 @@ Each file contains a dependency subtree written in a `dot` language, for
 example:
 
 ```dot
-# cryptd+glue_helper.dot
+# ecc.dot
 digraph A {
-    rankdir = TB
-    glue_helper
-    aesni_intel
-    crypto_simd
-    cryptd
-    ghash_clmulni_intel
-    aesni_intel -> glue_helper
-    aesni_intel -> crypto_simd
-    crypto_simd -> cryptd
-    ghash_clmulni_intel -> cryptd
+	rankdir = TB
+	btusb
+	btbcm
+	btintel
+	btrtl
+	bluetooth
+	ecdh_generic
+	bnep
+	rfcomm
+	ecc
+	btusb -> btbcm
+	btusb -> btintel
+	btusb -> bluetooth
+	btusb -> btrtl
+	btbcm -> bluetooth
+	btintel -> bluetooth
+	btrtl -> bluetooth
+	bluetooth -> ecdh_generic
+	ecdh_generic -> ecc
+	bnep -> bluetooth
+	rfcomm -> bluetooth
 }
 ```
 
