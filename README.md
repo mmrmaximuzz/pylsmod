@@ -124,4 +124,4 @@ for f in *.dot; do dot -Tpng $f > $f.png; done
 After that, you can open the pictures in your favorite viewer and enjoy the
 kernel module dependencies drawn for you automatically. Picture example:
 
-
+![example](example.png)
